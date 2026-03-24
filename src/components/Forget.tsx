@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { unibcompLogo3 } from "../assets";
+import { Ambeji } from "../assets";
 import { useRequestOtp, useVerifyUser } from "../hooks/useUser";
 import { handleQueryToast } from "../common/utils/queryToast";
 import toast from "react-hot-toast";
@@ -20,7 +20,7 @@ const Forget: React.FC = () => {
   const [userId, setUserId] = useState<string>("");
   const navigate = useNavigate();
 
-  const { register, handleSubmit, watch, formState: { errors } } =
+  const { register, handleSubmit, formState: { errors } } =
     useForm<ForgetPasswordForm>();
 
   const { mutate: sendOtp, isPending: isSendingOtp } = useRequestOtp();
@@ -65,128 +65,119 @@ const Forget: React.FC = () => {
   };
 
   return (
-    <div className="h-screen bg-gray-100 flex justify-center items-center "style={{ height: "84vh" }}>
-      {/* Main Card */}
-      <div className="w-full max-w-4xl bg-white shadow-lg flex md:flex-row  flex-col overflow-hidden mt-2" style={{ height: "80vh" }}>
-        
-        {/* Left Panel: Branding & Info */}
-        <div className="md:w-2/5 w-full bg-[#2874F0] text-white p-8 flex flex-col justify-between">
+    <div className="min-h-screen bg-[#fff5f5] flex justify-center items-center px-4">
+      
+      {/* Card */}
+      <div className="w-full max-w-4xl bg-white shadow-xl rounded-2xl overflow-hidden flex flex-col md:flex-row">
+
+        {/* LEFT */}
+        <div className="md:w-2/5 w-full bg-[#dd3333] text-white p-8 flex flex-col justify-between">
           <div>
-            <img src={unibcompLogo3} alt="Unibcomp" className="w-36 mb-6" />
+            <img src={Ambeji} alt="logo" className="w-32 mb-6" />
             <h1 className="text-2xl font-semibold mb-3">Forgot Password</h1>
-            <p className="text-sm leading-relaxed opacity-90">
-              Choose a method to reset your password. Enter your details and we'll send you an OTP for verification.
+            <p className="text-sm opacity-90">
+              Reset your password securely using OTP verification.
             </p>
           </div>
-          <p className="text-xs opacity-80">© {new Date().getFullYear()} Unibcomp</p>
+          <p className="text-xs opacity-80">© {new Date().getFullYear()}</p>
         </div>
 
-        {/* Right Panel: Form */}
-        <div className="md:w-3/5 w-full px-10  flex flex-col justify-center pb-24">
+        {/* RIGHT */}
+        <div className="md:w-3/5 w-full px-8 py-10">
+
           <form
             onSubmit={handleSubmit(submitted ? onResetPassword : onSendOtp)}
             className="space-y-5"
           >
-            {/* Toggle Method: Phone / Email */}
-            <div className="flex justify-center mb-6">
+
+            {/* Toggle */}
+            <div className="flex bg-gray-100 rounded-xl overflow-hidden">
               <button
                 type="button"
                 onClick={() => setMethod("mobile")}
                 disabled={submitted}
-                className={`px-6 py-3 rounded-l-xl border ${method === "mobile" ? "text-blue-600 bg-gray-100 " : "text-gray-600"} ${submitted ? "opacity-50 cursor-not-allowed" : ""}`}
+                className={`flex-1 py-2 text-sm font-medium transition ${
+                  method === "mobile"
+                    ? "bg-[#dd3333] text-white"
+                    : "text-gray-600"
+                }`}
               >
                 Phone
               </button>
+
               <button
                 type="button"
                 onClick={() => setMethod("email")}
                 disabled={submitted}
-                className={`px-6 py-3 rounded-r-xl border ${method === "email" ? "text-blue-600 bg-gray-100 " : " text-gray-600"} ${submitted ? "opacity-50 cursor-not-allowed" : ""}`}
+                className={`flex-1 py-2 text-sm font-medium transition ${
+                  method === "email"
+                    ? "bg-[#dd3333] text-white"
+                    : "text-gray-600"
+                }`}
               >
                 Email
               </button>
             </div>
 
-            {/* Mobile / Email Input */}
+            {/* Input */}
             {method === "mobile" ? (
               <div>
                 <input
                   type="text"
-                  {...register("mobile", {
-                    required: "Mobile number is required",
-                    minLength: { value: 10, message: "Mobile must be 10 digits" },
-                    maxLength: { value: 10, message: "Mobile must be 10 digits" },
-                  })}
-                  placeholder="Mobile Number"
-                  className={`w-full border-b border-gray-300 py-2.5 text-sm
-                           focus:outline-none focus:border-[#2874F0] ${submitted ? "bg-gray-100 cursor-not-allowed" : ""}`}
+                  {...register("mobile", { required: "Mobile required" })}
+                  placeholder="Enter mobile number"
                   disabled={submitted}
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm
+                             focus:ring-2 focus:ring-[#dd3333] focus:outline-none"
                 />
-                {errors.mobile && <p className="text-sm text-red-500">{errors.mobile.message}</p>}
+                {errors.mobile && <p className="text-red-500 text-sm">{errors.mobile.message}</p>}
               </div>
             ) : (
               <div>
                 <input
                   type="email"
-                  {...register("email", {
-                    required: "Email is required",
-                    pattern: {
-                      value: /^[A-Za-z][A-Za-z0-9._%+-]*@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
-                      message: "Email must start with a letter and be valid.",
-                    },
-                  })}
-                  placeholder="Email Address"
-                  className={`w-full border-b border-gray-300 py-2.5 text-sm
-                           focus:outline-none focus:border-[#2874F0] ${submitted ? "bg-gray-100 cursor-not-allowed" : ""}`}
+                  {...register("email", { required: "Email required" })}
+                  placeholder="Enter email"
                   disabled={submitted}
-                  
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm
+                             focus:ring-2 focus:ring-[#dd3333] focus:outline-none"
                 />
-                {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
+                {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
               </div>
             )}
 
-            {/* OTP + Password (for submitted state) */}
+            {/* OTP + Password */}
             {submitted && (
               <>
                 <input
                   type="text"
-                  maxLength={6}
-                  inputMode="numeric"
-                  {...register("otp", { required: "OTP is required" })}
+                  {...register("otp", { required: "OTP required" })}
                   placeholder="Enter OTP"
-                  className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
+                  className="input-style"
                 />
-                {errors.otp && <p className="text-sm text-red-500">{errors.otp.message}</p>}
 
                 <input
                   type="password"
-                  {...register("newPassword", { required: "New password is required" })}
+                  {...register("newPassword")}
                   placeholder="New Password"
-                  className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
+                  className="input-style"
                 />
-                {errors.newPassword && <p className="text-sm text-red-500">{errors.newPassword.message}</p>}
 
                 <input
                   type="password"
-                  {...register("confirmPassword", {
-                    required: "Confirm password is required",
-                    validate: (value) => value === watch("newPassword") || "Passwords do not match",
-                  })}
+                  {...register("confirmPassword")}
                   placeholder="Confirm Password"
-                  className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
+                  className="input-style"
                 />
-                {errors.confirmPassword && <p className="text-sm text-red-500">{errors.confirmPassword.message}</p>}
               </>
             )}
 
-            {/* Submit Button */}
+            {/* Button */}
             <button
               type="submit"
-              className="w-full bg-[#FB641B] text-white py-2.5
-                         text-sm font-semibold rounded-sm
-                         hover:opacity-90 transition
-                         disabled:opacity-60"
               disabled={isSendingOtp || isResettingPassword}
+              className="w-full bg-[#dd3333] text-white py-3 rounded-xl font-medium
+                         hover:bg-[#b82a2a] transition"
             >
               {submitted
                 ? isResettingPassword
@@ -198,15 +189,16 @@ const Forget: React.FC = () => {
             </button>
           </form>
 
-          {/* Back to Login */}
+          {/* Back */}
           <div className="text-center mt-6">
             <Link
               to="/login"
-              className="inline-flex items-center text-blue-600 font-medium text-sm hover:text-blue-800 hover:underline transition"
+              className="text-[#dd3333] text-sm font-medium hover:underline"
             >
-              <span className="mr-1">←</span> Back to Login
+              ← Back to Login
             </Link>
           </div>
+
         </div>
       </div>
     </div>

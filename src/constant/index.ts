@@ -15,7 +15,7 @@ const Footerdata = [
                 path: "/customerreview"
             },
             {
-                name: "Support Email: support@ambeji.in",
+                name: "Support Email: support@ambeji.com",
                 path: "#"
             },
             // {

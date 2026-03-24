@@ -1,4 +1,9 @@
+import Ambeji from "./Ambeji.png"
+export {Ambeji}
+
 import logo from "./logo.jpg"
+
+
 export {logo}
 import logo2  from "./FooterLogo.png";
 export {logo2}
