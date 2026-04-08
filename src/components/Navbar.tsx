@@ -11,7 +11,8 @@ import { useNavbar, type NavbarResponse } from "../hooks/useNavbar";
 import SearchProduct from "./Search";
 import LocationModel from "../screens/LocationModel";
 import { usePincode } from "../hooks/usePincode";
-import { ChevronDown, ChevronUp, CircleHelp, Heart, LogIn, LogOut, MapPin, Menu, Package, ShoppingCart, Store, User, UserPlus, X } from "lucide-react";
+import { ChevronDown, ChevronUp, CircleHelp, Heart, LogIn, LogOut, MapPin, Menu, Package, ShoppingCart, User, UserPlus, X } from "lucide-react";
+import { Ambeji } from "../assets";
 
 const LANGUAGES = [
   { code: "en", label: "English" },
@@ -181,7 +182,7 @@ const Navbar: React.FC = () => {
           <div className="flex items-center gap-3 shrink-0">
             <Link to="/" onClick={handleLogoReload}>
               <img
-                src="https://ambeji.com/wp-content/uploads/2021/09/logo-ambeji-l-e1757655211871.png"
+                src={Ambeji}
                 alt="Ambeji Logo"
                 className="h-7 sm:h-8 md:h-9 w-auto"
               />

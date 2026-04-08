@@ -6,7 +6,7 @@ import {
   LogIn,
   UserPlus,
   Heart,
-  Store,
+  // Store,
   LogOut,
   Package,
   CircleHelp,

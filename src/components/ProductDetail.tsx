@@ -10,7 +10,8 @@ import { useUser } from "../constant/UserProvider";
 import { useRatingsByProduct } from "../hooks/useRatingAction";
 import ProductList from "./Product";
 import WishlistButton from "../screens/WishlistButton";
-import { assuredImg } from "../assets";
+
+// import { Ambeji, assuredImg } from "../assets";
 import NoDataFound from "../screens/NotDataFound";
 import ProductDetailShimmer from "./shimmer/ProductDetailShimmer";
 
@@ -182,9 +183,9 @@ const ProductDetail: React.FC = () => {
 
             {/* Assured + Category */}
             <div className="flex items-center gap-2 text-sm">
-              <img src={assuredImg} alt="Assured" className="w-4 h-4 object-contain mix-blend-multiply" />
-              <span className="text-xs font-semibold text-[#dd3333]">Assured</span>
-              <span className="text-[#ccc]">|</span>
+              {/* <img src={Ambeji} alt="Assured" className="w-4 h-4 object-contain mix-blend-multiply" />
+              <span className="text-xs font-semibold text-[#dd3333]">Assured</span> */}
+              {/* <span className="text-[#ccc]">|</span> */}
               <span className="text-xs text-[#888]">{product.category?.name}</span>
             </div>
 

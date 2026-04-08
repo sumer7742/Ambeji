@@ -8,6 +8,7 @@ import { useIsMobile } from "../hooks/useMobile";
 import LoadingOverlay from "./Loading";
 const Banner: React.FC = () => {
   const { data: carousels, isLoading } = useCarousels();
+  console.log(carousels)
   const isMobile = useIsMobile();
   const [current, setCurrent] = useState<number>(0);
   const [delay, setDelay] = useState<number>(5000);
@@ -67,7 +68,7 @@ const Banner: React.FC = () => {
     <div
       className="
         relative w-full 
-        h-[200px] sm:h-[280px] md:h-[35vh] lg:h-[60vh] xl:h-[50vh] 
+        h-[200px] sm:h-[280px] md:h-[45vh] lg:h-[70vh] xl:h-[60vh] 
         overflow-hidden shadow-lg
         transition-all duration-500 ease-in-out  
       "

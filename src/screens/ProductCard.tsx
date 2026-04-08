@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import type { IProduct } from "../common/types/types";
 import WishlistButton from "./WishlistButton";
-import { assuredImg } from "../assets";
+// import { assuredImg } from "../assets";
 
 interface ProductCardProps {
   product: IProduct;
@@ -63,14 +63,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isFullDetail }) => {
 
           <div className="flex items-center gap-3">
             
-            <div className="flex items-center gap-1 flex-col">
+            {/* <div className="flex items-center gap-1 flex-col">
               <img
                 src={assuredImg}
                 alt="Assured Logo"
                 className="w-5 h-5 object-contain mix-blend-multiply rounded-full"
               />
               <i className="text-xs font-medium text-red-600">Assured</i>
-            </div>
+            </div> */}
 
           
             <div className="flex flex-col">
